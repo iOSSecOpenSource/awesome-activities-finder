@@ -29,12 +29,12 @@ block content
                 // div.tipsContainer
                 each tip, i in tips
                     .row.tip
-                            
+
                             div.tip-body #{tip.body}
                             div.tip-user by: #{tip.User.username}
-                            small.tip-date #{tip.createdAt} 
-                            p.tip-id(hidden)=tip.id                       
-                            .tip-vote-count #{tip.vote}
+                            small.tip-date #{tip.createdAt}
+                            p.tip-id(hidden)=tip.id
+                            .tip-vote-count Review Votes: #{tip.vote}
                             if (currentUser)
                                 form.voteup
                                     .text-right.col-xs-2
@@ -43,7 +43,7 @@ block content
                                 form.votedown
                                     .text-right.col-xs-2
                                         button.tipbtn.glyphicon.glyphicon-thumbs-down.btn-outline-danger(type="Submit")
-                                if (currentUser.id == tip.UserId)          
+                                if (currentUser.id == tip.UserId)
                                     form.tip-delete
                                         .text-right.col-xs-2
                                             button.tipbtn.glyphicon.glyphicon-trash.btn-outline-dark(type="Submit")
