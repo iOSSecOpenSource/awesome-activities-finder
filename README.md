@@ -76,8 +76,3 @@ User Stories
 
 ### License 
 This project is licensed under the MIT License - see the [LICENSE.](https://tldrlegal.com/license/mit-license) file for details
-
--------------------
-
-Boilerplate starter created by
-
