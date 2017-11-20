@@ -1,7 +1,7 @@
 {
-  "name": "awesome-tips",
+  "name": "awesome-activities-finder",
   "version": "1.0.0",
-  "description": "## Introduction Awesome Tips is a program that allows users to easily create tips and reviews for the places around them. View tips created by you and other users on a map of your surroundings or scroll through a feed of tips that others have created for the areas that interest you.",
+  "description": "## Introduction Awesome Awesome Activities Finder is a program that provide exciting stops that match your search through MeetUp and Yelp. View tips created by you and other users on a map of your surroundings. that others have created for the areas that interest you. You are provided information about the business, meet-up you choose, as well as a Google Map with markers of your current location, the activity, and destination. If you prefer an activity near your current location, that is also an option!",
   "main": "./bin/www",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anselb/awesome-tips.git"
+    "url": "git+https://github.com/JeffChiu2009/awesome-activities.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/anselb/awesome-tips/issues"
+    "url": "https://github.com/JeffChiu2009/awesome-activities/issues"
   },
-  "homepage": "https://github.com/anselb/awesome-tips#readme",
+  "homepage": "https://github.com/JeffChiu2009/awesome-activities#readme",
   "dependencies": {
     "@google/maps": "^0.4.5",
     "bcrypt-nodejs": "0.0.3",

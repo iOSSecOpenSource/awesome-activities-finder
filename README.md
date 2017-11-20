@@ -49,12 +49,12 @@ git push heroku master
 
 
 ***
-## How to use Activity Chooser
+## How to use Awesome Activities Chooser
 
 It's avaliable at
-https://activitysearcher.herokuapp.com
+https://awesome-activities.herokuapp.com
 
--Activity Chooser consists of three pages: 
+-Awesome Activity Finder consists of three pages: 
 1. Homepage
 2. Activity Selection
 3. Final Page with route and business information
