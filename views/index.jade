@@ -1,0 +1,57 @@
+extends layout
+
+// USE BLOCK CONTENT TO RENDER TEMPLATE
+block content
+    div.row
+
+        // KEEP CONTENT TO THE LEFT
+        // DISPLAY LOGIN OR REGISTER WHEN NOT LOGGED IN
+        if (!currentUser)
+            //p.tip-add-message Login or register to add a tip
+
+        div.col-xs-12.col-md-8.tip-form
+            // DISPLAY FORM ONLY WHEN USER IS LOGGED IN
+            if (currentUser)
+                form.tip-form-content
+                    div.form-group
+                        h2(for='tip-body') Activities
+                        textarea#tip-content.form-control(name='body', placeholder="What's your Activities?")
+                    div.form-group
+                        h2(for='tip-address') Address of Location
+                        br
+                        span.hint Leave Empty to use your Current Location
+                        input#tip-address.form-control(type='text', name='address' placeholder='1547 Mission St, San Francisco, CA 94103')
+                    div.text-right
+                        button(type='button')#tip-submit.btn.btn-primary Submit Activities
+
+            // ALWAYS DISPLAY TIPS
+            div.tipbox
+                // div.tipsContainer
+                each tip, i in tips
+                    .row.tip
+                            
+                            div.tip-body #{tip.body}
+                            div.tip-user by: #{tip.User.username}
+                            small.tip-date #{tip.createdAt} 
+                            p.tip-id(hidden)=tip.id                       
+                            .tip-vote-count #{tip.vote}
+                            if (currentUser)
+                                form.voteup
+                                    .text-right.col-xs-2
+                                        button.tipbtn.glyphicon.glyphicon-thumbs-up.btn-outline-success(type="Submit")
+
+                                form.votedown
+                                    .text-right.col-xs-2
+                                        button.tipbtn.glyphicon.glyphicon-thumbs-down.btn-outline-danger(type="Submit")
+                                if (currentUser.id == tip.UserId)          
+                                    form.tip-delete
+                                        .text-right.col-xs-2
+                                            button.tipbtn.glyphicon.glyphicon-trash.btn-outline-dark(type="Submit")
+
+        // div.hidden-sm
+        // MAP HERE TO KEEP ON RIGHT SIDE
+        div#map.col-xs-12.col-md-4
+
+    script(src='markerclusterer.js')
+    script(src='js-map.js')
+    script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAaGNPA1AHCW0seaqLolurw0WDxDBccbco&callback=initMap')

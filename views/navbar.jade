@@ -1,0 +1,30 @@
+nav.navbar.bg-primary.row
+    div.col-xs-12.col-md-9
+        a.navbar-brand(href="/") Awesome Activities Finder
+    div.col-xs-12.col-md-3
+        if (!currentUser)
+            ul.userBtns
+                // REMOVED ID'S USED BY JQUERY ROUTES, CAUSING SOME ROUTE ISSUES
+                //li.glyphicon.glyphicon-log-in#login
+                //    a(href="/login") Login
+                //li.glyphicon.glyphicon-check#signup
+                //    a(href="/sign-up") Signup
+
+                a(href="/login")
+                    li.glyphicon.glyphicon-log-in.auth 
+                        span.userbtns Login
+                        
+                a(href="/sign-up")    
+                    li.glyphicon.glyphicon-check.auth  
+                        span.userbtns Signup
+                       
+
+        else
+            ul.userBtns
+                li
+                    span Welcome:
+                    a.nav-item.nav-user(href="#" + currentUser.username)=currentUser.username
+                    span#userId(hidden)=currentUser.id
+                    a.logout.nav-item.glyphicon.glyphicon-log-out.auth(href="/logout") 
+                        span.userbtns Logout
+                    //a.logout.nav-item.glyphicon.glyphicon-log-out(href="/user/")#logout Logout

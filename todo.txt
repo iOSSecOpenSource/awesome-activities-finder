@@ -1,0 +1,22 @@
+TODO MILESTONES
+
+Complete by Wednesday 11/1
+    Routes
+    bootstrap
+    Get User Location
+    User Auth
+
+Complete by Friday 11/3
+    Login and signup page
+    user settings and profile
+    Map w/ Location
+
+Complete by Wednesday 11/8
+    Search/filter
+    Voting System
+    Comment System
+    Review System with CRUD
+
+Complete by Friday 11/10
+    Reputation System
+    CSS Tweaks

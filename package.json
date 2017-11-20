@@ -1,0 +1,45 @@
+{
+  "name": "awesome-tips",
+  "version": "1.0.0",
+  "description": "## Introduction Awesome Tips is a program that allows users to easily create tips and reviews for the places around them. View tips created by you and other users on a map of your surroundings or scroll through a feed of tips that others have created for the areas that interest you.",
+  "main": "./bin/www",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anselb/awesome-tips.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anselb/awesome-tips/issues"
+  },
+  "homepage": "https://github.com/anselb/awesome-tips#readme",
+  "dependencies": {
+    "@google/maps": "^0.4.5",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.2",
+    "bootstrap": "^3.3.7",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "express-flash": "0.0.2",
+    "express-session": "^1.15.6",
+    "jade": "^1.11.0",
+    "method-override": "^2.3.10",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pg": "^7.3.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.20.3",
+    "sequelize-cli": "^3.0.0",
+    "socketio": "^1.0.0"
+  },
+  "devDependencies": {
+    "locus": "^2.0.1",
+    "nodemon": "^1.12.1"
+  }
+}
