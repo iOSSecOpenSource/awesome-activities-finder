@@ -223,3 +223,8 @@ li.glyphicon.auth:hover{
 .hint{
     font-size: 1em;
 }
+
+.userbtns{
+    padding-left: 15px;
+}
+
