@@ -54,4 +54,4 @@ block content
 
     script(src='markerclusterer.js')
     script(src='js-map.js')
-    script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAaGNPA1AHCW0seaqLolurw0WDxDBccbco&callback=initMap')
+    script(src='https://maps.googleapis.com/maps/api/js?key=' + process.env.MAP_KEY + '&callback=initMap')

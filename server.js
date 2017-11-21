@@ -35,7 +35,7 @@ app.get('*', function (req, res, next) {
 
 app.get('/', function (req, res) {
   models.Tip.findAll({include: models.User, order: [['createdAt', 'DESC']] }).then((tips) => {
-    res.render('index', {currentUser: req.user, tips: tips});
+    res.render('index', {currentUser: req.user, tips: tips, GoogleAPI: process.env.Google_API});
   })
 });
 
@@ -57,6 +57,7 @@ app.get('/sign-up', (req, res, next) => {
 require('./controllers/passport')(passport);            // required for passport
 require('./controllers/auth')(app, passport);           //  Routes for authentication
 require('./controllers/tips')(app);                     // Routes for Tips
+require('./controllers/search')(app);                     // Route for search
 
 
 // ERROR HANDLING

@@ -36,7 +36,8 @@
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.20.3",
     "sequelize-cli": "^3.0.0",
-    "socketio": "^1.0.0"
+    "socketio": "^1.0.0",
+    "yelp-fusion": "^1.0.4"
   },
   "devDependencies": {
     "locus": "^2.0.1",
