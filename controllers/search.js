@@ -22,10 +22,16 @@ module.exports = function (app) {
           client.search(searchRequest).then(response => {
               const firstResult = response.jsonBody.businesses[0];
               const prettyJson = JSON.stringify(firstResult, null, 4);
-              console.log(prettyJson);
+              console.log(response.jsonBody.businesses);
+              return response.jsonBody.businesses
+          }).then(result => {
+              console.log(result.id)
+              res.render('results', { yelpDatas: result })
+          }).catch(err => {
+              console.log(err)
           });
       });
 
-        res.redirect('/')
+        // res.redirect('/')
     });
 }
