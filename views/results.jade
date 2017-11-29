@@ -2,9 +2,13 @@ each yelpData in yelpDatas
     p.
         #{yelpData.name}
     p.
-        #{yelpData.rating}
+        Rating: #{yelpData.rating}
     p.
-        #{yelpData.location.address1}
+        Yelp Link: 
+            a(href="#{yelpData.url}")
+                #{yelpData.name}
+    p.
+        #{yelpData.location.address1}, #{yelpData.location.city}
         
     img(src="#{yelpData.image_url}")
     //- img(src="https://s3-media3.fl.yelpcdn.com/bphoto/QEU6BbFcAZx-XQVrQXagyg/o.jpg")

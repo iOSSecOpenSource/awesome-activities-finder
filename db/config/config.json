@@ -1,13 +1,13 @@
 {
   "development": {
-    "username": "anselbridgewater",
+    "username": "jchiu",
     "password": null,
     "database": "tip-dev",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
     "development": {
-      "username": "jchiu",
+      "username": "anselbridgewater",
       "password": null,
       "database": "tip-dev",
       "host": "127.0.0.1",
