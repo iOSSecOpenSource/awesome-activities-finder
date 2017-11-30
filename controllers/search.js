@@ -24,14 +24,12 @@ const yelpPromise = yelp.accessToken(yelpId, yelpKey)
       // handle yelp results
       const yelpResults = values[0]
       //handleYelp(yelpResults)
-
-
       // handle meetup results
-      // const meetupResults = values[1]
-      //
-      //
-      // // handle eventbright results
-      // const eventbriteResults = values[2]
+      const meetupResults = values[1]
+
+
+      // handle eventbright results
+      const eventbriteResults = values[2]
 
       res.render('search', yelpResults)
     })
@@ -81,6 +79,5 @@ const yelpPromise = yelp.accessToken(yelpId, yelpKey)
       }).catch((err) => {
       console.log(err);
     })
-        // res.redirect('/')
     });
 }
