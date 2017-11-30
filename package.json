@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JeffChiu2009/awesome-activities.git"
+    "url": "git+https://github.com/JeffChiu2009/awesome-activities-finder.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/JeffChiu2009/awesome-activities/issues"
+    "url": "https://github.com/JeffChiu2009/awesome-activities-finder/issues"
   },
-  "homepage": "https://github.com/JeffChiu2009/awesome-activities#readme",
+  "homepage": "https://github.com/JeffChiu2009/awesome-activities-finder#readme",
   "dependencies": {
     "@google/maps": "^0.4.5",
     "bcrypt-nodejs": "0.0.3",
@@ -32,9 +32,9 @@
     "method-override": "^2.3.10",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "pg": "^7.3.0",
+    "pg": "^7.4.0",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^4.20.3",
+    "sequelize": "^4.23.2",
     "sequelize-cli": "^3.0.0",
     "socketio": "^1.0.0",
     "yelp-fusion": "^1.0.4"

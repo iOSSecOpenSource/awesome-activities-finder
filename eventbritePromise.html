@@ -1,0 +1,32 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.js"></script>
+    <script>
+    $(document).ready(function() {
+
+
+    	var token = 'ZNJZHDO7GC254JVMOLJZ';
+        //org id
+        var organizer = '15858913711';
+
+        var $events = $("#events");
+
+        $events.html("<i>Loading events, please stand by...</i>");
+    $.ajax({
+	method: "GET",
+	url: "https://www.eventbriteapi.com/v3/events/search/?token=" + token + "&q=javascript&location.address=San Francisco&page=1",
+	}).done(function(res) {
+	console.log(res);
+	});
+
+//The number of events returned is fixed to +-50 objects per page.
+ });
+    </script>
+</head>
+<body>
+
+<h2>Upcoming Events!</h2>
+<div id="events"></div>
+</body>
+</html>
