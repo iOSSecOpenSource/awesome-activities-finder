@@ -1,7 +1,6 @@
 require('dotenv').config();
 const yelp = require('yelp-fusion');
 const EVENTBRITE_token = process.env.eventbriteKEY;
-// const ROOT_URL = 'https://www.eventbriteapi.com/v3/events/search/';
 const meetupapi_key = process.env.meetupapi_key;
 const yelpId = process.env.yelpId;
 const yelpKey = process.env.yelpKey;
@@ -15,16 +14,16 @@ const meetupPromise = "Hello World"
   app.get('/search', function(req, res) {
     console.log("******************** ");
     // define promises
-    Promise.all([yelpPromise, eventbritePromise, meetupPromise]).then((values) => {
+    Promise.all([yelpPromise, eventbritePromise]).then((values) => {
       let results = {}
       // handle yelp results
       const yelpResults = values[0]
       //handleYelp(yelpResults)
       const eventbriteResults = values[1]
       // handle meetup results
-      const meetupResults = values[2]
+      // const meetupResults = values[2]
       // handle eventbright results
-      console.log(value)
+      console.log(values)
       res.render('search', yelpResults)
     }).catch((err) => {
       console.log(err.message);
@@ -50,9 +49,9 @@ const meetupPromise = "Hello World"
           console.log(err)
       });
       //meetup API request
-      const url = "https://api.meetup.com/find/groups?key=" + meetupapi_key +"&&sign=true&photo-host=public&zip=94502&text=javascript&page=20"; //Meetup Group with Javascript and Zip code 94502
+      const meetupURL = "https://api.meetup.com/find/groups?key=" + meetupapi_key +"&&sign=true&photo-host=public&zip=94502&text=javascript&page=20"; //Meetup Group with Javascript and Zip code 94502
       // get search string and append to the api
-      fetch(url, { mode: 'no-cors'}).then((res) => {
+      fetch(meetupURL, { mode: 'no-cors'}).then((res) => {
         return res.json()
       }).then((json) => {
         console.log(json);
@@ -61,8 +60,8 @@ const meetupPromise = "Hello World"
       })
 
       //eventbrite api
-      let url = "https://www.eventbriteapi.com/v3/events/search/?token=" + EVENTBRITE_token + "&q=javascript&location.address=San Francisco&page=1" //EventBrite Group with Javascript and SF Location
-      fetch(url).then((res) => res.json())
+      const eventbriteIDURL = "https://www.eventbriteapi.com/v3/events/search/?token=" + EVENTBRITE_token + "&q=javascript&location.address=San Francisco&page=1" //EventBrite Group with Javascript and SF Location
+      fetch(eventbriteIDURL).then((res) => res.json())
       .then((data) => {
         // handle json from eventbright
         console.log(data)
