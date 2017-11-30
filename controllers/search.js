@@ -1,43 +1,38 @@
 require('dotenv').config();
-
 const yelp = require('yelp-fusion');
-const EVENTBRITE_ID = process.env.eventbriteID;
 const EVENTBRITE_token = process.env.eventbriteKEY;
-
-const ROOT_URL = 'https://www.eventbriteapi.com/v3/events/search/';
+// const ROOT_URL = 'https://www.eventbriteapi.com/v3/events/search/';
 const meetupapi_key = process.env.meetupapi_key;
-
 const yelpId = process.env.yelpId;
 const yelpKey = process.env.yelpKey;
-
 module.exports = function (app) {
-
 const yelpPromise = yelp.accessToken(yelpId, yelpKey)
+const eventbritePromise = "Hello"
+const meetupPromise = "Hello World"
 
+// const api = "https://api.meetup.com/find/groups?photo-host=public&zip=94502&page=50&text=" + meetupapi_key +"&sig_id=242131561&order=newest&sig=f5dd0f30a274f1a959fd767e1848625113b4684e";
 
   app.get('/search', function(req, res) {
-
+    console.log("******************** ");
     // define promises
-
-    Promise.all([yelpPromise, meetupPromise, eventBeightPromise]).then((values) => {
+    Promise.all([yelpPromise, eventbritePromise, meetupPromise]).then((values) => {
       let results = {}
       // handle yelp results
       const yelpResults = values[0]
       //handleYelp(yelpResults)
+      const eventbriteResults = values[1]
       // handle meetup results
-      const meetupResults = values[1]
-
-
+      const meetupResults = values[2]
       // handle eventbright results
-      const eventbriteResults = values[2]
-
+      console.log(value)
       res.render('search', yelpResults)
+    }).catch((err) => {
+      console.log(err.message);
     })
   });
 
 
     app.post('/search', function (req, res) {
-
       const searchRequest = {
           term: req.body.term,
           location: req.body.place
@@ -47,9 +42,6 @@ const yelpPromise = yelp.accessToken(yelpId, yelpKey)
           const client = yelp.client(response.jsonBody.access_token);
           return client.search(searchRequest)
       }).then(response => {
-          // const firstResult = response.jsonBody.businesses[0];
-          // const prettyJson = JSON.stringify(firstResult, null, 4);
-          // console.log(response.jsonBody.businesses);
           return response.jsonBody.businesses
       }).then(result => {
           console.log(result.id)
@@ -57,27 +49,26 @@ const yelpPromise = yelp.accessToken(yelpId, yelpKey)
       }).catch(err => {
           console.log(err)
       });
-
       //meetup API request
-      const api = "https://api.meetup.com/find/groups?photo-host=public&zip=94502&page=50&text=" + meetupapi_key +"&sig_id=242131561&order=newest&sig=f5dd0f30a274f1a959fd767e1848625113b4684e";
+      const url = "https://api.meetup.com/find/groups?key=" + meetupapi_key +"&&sign=true&photo-host=public&zip=94502&text=javascript&page=20"; //Meetup Group with Javascript and Zip code 94502
       // get search string and append to the api
-      fetch(api).then((res) => {
+      fetch(url, { mode: 'no-cors'}).then((res) => {
         return res.json()
       }).then((json) => {
-        // meetup json ...
-
+        console.log(json);
       }).catch((err) => {
         console.log(err);
       })
-      //eventbrite api
-      let url = "https://www.eventbriteapi.com/v3/events/search/?token=" + EVENTBRITE_token + "&q=javascript&location.address=San Francisco&page=1"
-      fetch(url).then((res) => {
-        return res.json()
-      }).then((json) => {
-        // handle json from eventbright
 
+      //eventbrite api
+      let url = "https://www.eventbriteapi.com/v3/events/search/?token=" + EVENTBRITE_token + "&q=javascript&location.address=San Francisco&page=1" //EventBrite Group with Javascript and SF Location
+      fetch(url).then((res) => res.json())
+      .then((data) => {
+        // handle json from eventbright
+        console.log(data)
       }).catch((err) => {
       console.log(err);
     })
+
     });
 }
