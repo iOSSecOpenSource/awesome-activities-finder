@@ -13,7 +13,6 @@ const meetupPromise = "Hello World"
 
 // const url = 'https://cors-anywhere.herokuapp.com/' + darkSky
 
-
   app.get('/search', function(req, res) {
     console.log("******************** ");
     // define promises
@@ -33,24 +32,12 @@ const meetupPromise = "Hello World"
     })
   });
 
-    app.post('/search', function (req, res) {
+  app.get('/search', function(req, res) {
+      console.log("******************** ");
       const searchRequest = {
           term: req.body.term,
           location: req.body.place
       }
-      Promise.all([yelpPromise, eventbritePromise]).then((values) => {
-        let results = {}
-        // handle yelp results
-        const yelpResults = values[0]
-        //handleYelp(yelpResults)
-        const eventbriteResults = values[1]
-        // handle meetup results
-        // const meetupResults = values[2]
-        // handle eventbright results
-        console.log(values)
-      }).catch((err) => {
-        console.log(err.message);
-      })
       //yelp API request
       yelp.accessToken(yelpId, yelpKey).then(response => {
           const client = yelp.client(response.jsonBody.access_token);
@@ -59,7 +46,7 @@ const meetupPromise = "Hello World"
           return response.jsonBody.businesses
       }).then(result => {
           console.log(result.id)
-          res.render('results', { yelpDatas: result })
+        //   res.render('results', { yelpDatas: result })
       }).catch(err => {
           console.log(err)
       });
@@ -86,6 +73,19 @@ const meetupPromise = "Hello World"
         console.log(err.message);
       })
       // Show for homepage
-
+      Promise.all([yelpPromise, eventbritePromise, meetupPromise]).then((values) => {
+        let results = {}
+        // handle yelp results
+        const yelpResults = values[0]
+        //handleYelp(yelpResults)
+        const eventbriteResults = values[1]
+        // handle meetup results
+        const meetupResults = values[2]
+        // handle eventbright results
+        console.log(values)
+        res.render('search', yelpPromise)
+      }).catch((err) => {
+        console.log(err.message);
+      })
     });
 }
