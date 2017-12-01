@@ -76,18 +76,18 @@ app.use(function (err, req, res, next) {
   }
 });
 
-var host = process.env.PORT ? '0.0.0.0' : '127.0.0.1';
-var port = process.env.PORT || 8080;
+// var host = process.env.PORT ? '0.0.0.0' : '127.0.0.1';
+// var port = process.env.PORT || 8080;
+//
+// var cors_proxy = require('cors-anywhere');
+// cors_proxy.createServer({
+//     originWhitelist: [], // Allow all origins
+//     requireHeader: ['origin', 'x-requested-with'],
+//     removeHeaders: ['cookie', 'cookie2']
+// }).listen(port, host, function() {
+//     console.log('Running CORS Anywhere on ' + host + ':' + port);
+// });
 
-var cors_proxy = require('cors-anywhere');
-cors_proxy.createServer({
-    originWhitelist: [], // Allow all origins
-    requireHeader: ['origin', 'x-requested-with'],
-    removeHeaders: ['cookie', 'cookie2']
-}).listen(port, host, function() {
-    console.log('Running CORS Anywhere on ' + host + ':' + port);
-});
- 
 // EXPORT MODULE, USE BIN/WWW - SAME AS EXPRESS-GENERATOR
 // NOT SURE IT MAKES ANY DIFFERENCE
 module.exports = app;
