@@ -29,12 +29,24 @@ const meetupPromise = "Hello World"
     })
   });
 
-
     app.post('/search', function (req, res) {
       const searchRequest = {
           term: req.body.term,
           location: req.body.place
       }
+      Promise.all([yelpPromise, eventbritePromise]).then((values) => {
+        let results = {}
+        // handle yelp results
+        const yelpResults = values[0]
+        //handleYelp(yelpResults)
+        const eventbriteResults = values[1]
+        // handle meetup results
+        // const meetupResults = values[2]
+        // handle eventbright results
+        console.log(values)
+      }).catch((err) => {
+        console.log(err.message);
+      })
       //yelp API request
       yelp.accessToken(yelpId, yelpKey).then(response => {
           const client = yelp.client(response.jsonBody.access_token);
@@ -49,6 +61,8 @@ const meetupPromise = "Hello World"
       });
       //eventbrite API request
       const eventbriteIDURL = "https://www.eventbriteapi.com/v3/events/search/?token=" + EVENTBRITE_token + "&q=javascript&location.address=San Francisco&page=1" //EventBrite Group with Javascript and SF Location
+      // mustr send this through cors anywhere proxy server!
+      // Look at Client example here: https://github.com/Rob--W/cors-anywhere
       fetch(eventbriteIDURL).then((res) => res.json())
       .then((data) => {
         // handle json from eventbright
@@ -57,7 +71,7 @@ const meetupPromise = "Hello World"
       console.log(err);
       })
       //meetup API request
-      const meetupURL = "https://api.meetup.com/find/groups?key=" + meetupapi_key +"&&sign=true&photo-host=public&zip=94502&text=javascript&page=20"; //Meetup Group with Javascript and Zip code 94502
+      const meetupURL = "https://cors-anywhere.herokuapp.com/https://api.meetup.com/find/groups?key=" + meetupapi_key +"&&sign=true&photo-host=public&zip=94502&text=javascript&page=20"; //Meetup Group with Javascript and Zip code 94502
       // get search string and append to the api
       fetch(meetupURL, { mode: 'no-cors'}).then((res) => {
         return res.json()
@@ -66,23 +80,23 @@ const meetupPromise = "Hello World"
       }).catch((err) => {
         console.log(err);
       })
-
-    (function() {
-        var cors_api_host = 'cors-anywhere.herokuapp.com';
-        var cors_api_url = 'https://' + cors_api_host + '/';
-        var slice = [].slice;
-        var origin = window.location.protocol + '//' + window.location.host;
-        var open = XMLHttpRequest.prototype.open;
-        XMLHttpRequest.prototype.open = function() {
-            var args = slice.call(arguments);
-            var targetOrigin = /^https?:\/\/([^\/]+)/i.exec(args[1]);
-            if (targetOrigin && targetOrigin[0].toLowerCase() !== origin &&
-                targetOrigin[1] !== cors_api_host) {
-                args[1] = cors_api_url + args[1];
-            }
-            return open.apply(this, args);
-        };
-    })();
+//added cors-anywhere module
+    // (function() {
+    //     var cors_api_host = 'cors-anywhere.herokuapp.com';
+    //     var cors_api_url = 'https://' + cors_api_host + '/';
+    //     var slice = [].slice;
+    //     var origin = window.location.protocol + '//' + window.location.host;
+    //     var open = XMLHttpRequest.prototype.open;
+    //     XMLHttpRequest.prototype.open = function() {
+    //         var args = slice.call(arguments);
+    //         var targetOrigin = /^https?:\/\/([^\/]+)/i.exec(args[1]);
+    //         if (targetOrigin && targetOrigin[0].toLowerCase() !== origin &&
+    //             targetOrigin[1] !== cors_api_host) {
+    //             args[1] = cors_api_url + args[1];
+    //         }
+    //         return open.apply(this, args);
+    //     };
+    // })();
 
     });
 }
