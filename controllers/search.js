@@ -5,22 +5,26 @@ const EVENTBRITE_token = process.env.eventbriteKEY;
 const meetupapi_key = process.env.meetupapi_key;
 const yelpId = process.env.yelpId;
 const yelpKey = process.env.yelpKey;
+
 module.exports = function (app) {
 const yelpPromise = yelp.accessToken(yelpId, yelpKey)
 const eventbritePromise = "Hello"
 const meetupPromise = "Hello World"
 
+// const url = 'https://cors-anywhere.herokuapp.com/' + darkSky
+
+
   app.get('/search', function(req, res) {
     console.log("******************** ");
     // define promises
-    Promise.all([yelpPromise, eventbritePromise]).then((values) => {
+    Promise.all([yelpPromise, eventbritePromise, meetupPromise]).then((values) => {
       let results = {}
       // handle yelp results
       const yelpResults = values[0]
       //handleYelp(yelpResults)
       const eventbriteResults = values[1]
       // handle meetup results
-      // const meetupResults = values[2]
+      const meetupResults = values[2]
       // handle eventbright results
       console.log(values)
       res.render('search', yelpPromise)
@@ -68,35 +72,20 @@ const meetupPromise = "Hello World"
         // handle json from eventbright
         console.log(data)
       }).catch((err) => {
-      console.log(err);
+        console.log(err.message);
       })
       //meetup API request
-      const meetupURL = "https://cors-anywhere.herokuapp.com/https://api.meetup.com/find/groups?key=" + meetupapi_key +"&&sign=true&photo-host=public&zip=94502&text=javascript&page=20"; //Meetup Group with Javascript and Zip code 94502
+      const url = "https://api.meetup.com/find/groups?key=" + meetupapi_key +"&&sign=true&photo-host=public&zip=94502&text=javascript&page=20";
+      const meetupURL = "https://cors-anywhere.herokuapp.com/ +url"; //Meetup Group with Javascript and Zip code 94502
       // get search string and append to the api
-      fetch(meetupURL, { mode: 'no-cors'}).then((res) => {
+      fetch(meetupURL).then((res) => {
         return res.json()
       }).then((json) => {
-        console.log(json);
+        console.log(json)
       }).catch((err) => {
-        console.log(err);
+        console.log(err.message);
       })
-//added cors-anywhere module
-    // (function() {
-    //     var cors_api_host = 'cors-anywhere.herokuapp.com';
-    //     var cors_api_url = 'https://' + cors_api_host + '/';
-    //     var slice = [].slice;
-    //     var origin = window.location.protocol + '//' + window.location.host;
-    //     var open = XMLHttpRequest.prototype.open;
-    //     XMLHttpRequest.prototype.open = function() {
-    //         var args = slice.call(arguments);
-    //         var targetOrigin = /^https?:\/\/([^\/]+)/i.exec(args[1]);
-    //         if (targetOrigin && targetOrigin[0].toLowerCase() !== origin &&
-    //             targetOrigin[1] !== cors_api_host) {
-    //             args[1] = cors_api_url + args[1];
-    //         }
-    //         return open.apply(this, args);
-    //     };
-    // })();
+      // Show for homepage
 
     });
 }
